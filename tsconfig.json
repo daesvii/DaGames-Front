@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es6", // Versión de JavaScript a la que se compilará
+    "module": "commonjs", // Sistema de módulos a usar
+    "jsx": "react", // Configura el soporte para JSX
+    "strict": true, // Activa todas las comprobaciones de tipo estrictas
+    "esModuleInterop": true, // Habilita la interoperabilidad con módulos ES
+    "skipLibCheck": true, // Omitir la verificación de tipo de archivos de declaración
+    "forceConsistentCasingInFileNames": true // Mantener el mismo uso de mayúsculas en los nombres de archivo
+  },
+  "include": ["src/**/*"], // Incluir todos los archivos .ts y .tsx en la carpeta src
+  "exclude": ["node_modules"] // Excluir la carpeta node_modules
+}
