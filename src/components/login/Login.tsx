@@ -67,12 +67,14 @@ const Login: React.FC = () => {
         return;
       }
 
+      const data = await response.json(); // Obtener datos de la respuesta
       showAlert(
         "Inicio de sesión exitoso",
         "Has iniciado sesión correctamente.",
         "success"
       );
-      localStorage.setItem("currentUser", username);
+
+      localStorage.setItem("currentUser", data.username); // Almacenar el username
       navigate("/catalog");
     } catch (error) {
       console.error("Error al iniciar sesión:", error);

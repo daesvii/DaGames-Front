@@ -11,7 +11,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Login />} />
-          <Route path="/catalog" element={<Catalog />} /> {/* Asegúrate de agregar esta línea */}
+          <Route path="/catalog" element={<Catalog />} />
         </Routes>
       </Router>
     </React.StrictMode>

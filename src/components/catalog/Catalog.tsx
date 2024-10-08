@@ -1,53 +1,61 @@
 import React, { useEffect, useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css"; // Importar Bootstrap primero
+import { useNavigate } from "react-router-dom"; // Importar useNavigate para redirigir
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Esto incluye Popper.js
 import "./Catalog.styles.css"; // Asegúrate de que la ruta sea correcta
 
 const Catalog: React.FC = () => {
   const [username, setUsername] = useState<string | null>(null);
+  const navigate = useNavigate(); // Inicializar useNavigate
 
   useEffect(() => {
     const currentUser = localStorage.getItem("currentUser");
 
     if (!currentUser) {
-      window.location.href = "../html/index.html"; // Redirigir si no hay usuario
+      navigate("/"); // Redirigir al componente Login si no hay usuario
     } else {
-      setUsername(currentUser); // Establecer el nombre de usuario
+      setUsername(currentUser);
     }
-  }, []);
+  }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem("currentUser");
-    window.location.href = "../html/index.html"; // Redirigir al cerrar sesión
+    navigate("/");
   };
 
   return (
     <div>
       <nav className="navbar navbar-dark bg-dark">
-        <a className="navbar-brand" href="/catalog">
-          Da-Games
-        </a>{" "}
-        {}
-        <div className="ml-auto">
-          <ul>
+        <div className="container-fluid"> {/* Usar container-fluid para que ocupe todo el ancho */}
+          <a className="navbar-brand me-auto" href="/catalog"> {/* Agregar clase me-auto para mover hacia la derecha */}
+            <img
+              src="../img/dagames.png"
+              alt="Logo"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />
+            DaGames
+          </a>
+          <ul className="navbar-nav">
             <li className="nav-item dropdown">
               <button
-                className="navbar-brand dropdown-toggle"
+                className="navbar-brand dropdown-toggle transparent-btn"
                 type="button"
                 id="navbarDropdownMenuLink"
-                data-toggle="dropdown"
+                data-bs-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
               >
                 <img
-                  src="../../img/forza.jpeg"
+                  src="../img/user.png"
                   width="30"
                   height="30"
                   className="d-inline-block align-top"
                   alt="Usuario"
                 />
-                <span id="username-placeholder">[{username}]</span>
+                <span id="username-placeholder">{username}</span>
               </button>
-
               <div
                 className="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
@@ -61,11 +69,10 @@ const Catalog: React.FC = () => {
         </div>
       </nav>
 
-      <div className="container">
-        {/* Aquí van tus elementos del catálogo */}
+      <div className="container container-catalog">
         {[
           {
-            src: "../../img/nba.jpg",
+            src: "../img/nba.jpg",
             title: "NBA 2K25",
             price: "$269.699 COP",
           },
